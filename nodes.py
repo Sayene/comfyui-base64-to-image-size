@@ -1,12 +1,7 @@
-import sys
-import os
 
 import cv2
-from PIL import Image, ImageOps
-import folder_paths
 import torch
 import numpy as np
-from io import BytesIO
 import base64
 
 
@@ -46,16 +41,12 @@ class LoadImageFromBase64Size:
         if missing_padding:
             cleaned_data += '=' * (4 - missing_padding)
 
-        try:
-            decoded_bytes = base64.b64decode(cleaned_data)
-        except Exception as e:
-            logging.error(f"Base64 decoding failed: {e}")
-            raise
-
-        nparr = np.frombuffer(base64.b64decode(data), np.uint8)
+        decoded_bytes = base64.b64decode(cleaned_data)
+        nparr = np.frombuffer(decoded_bytes, np.uint8)
 
         result = cv2.imdecode(nparr, cv2.IMREAD_UNCHANGED)
         height, width = result.shape[:2]
+        print(f"Input base64 Image size: width={width}, height={height}")
         channels = cv2.split(result)
         if len(channels) > 3:
             mask = channels[3].astype(np.float32) / 255.0
@@ -74,5 +65,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "LoadImageFromBase64Size": "Load Image From Base64",
+    "LoadImageFromBase64Size": "Load Img From Base64",
 }
