@@ -1,0 +1,13 @@
+[project]
+name = "comfyui-base64-to-image-with-size"
+description = "Nodes: LoadImageFromBase64Size. Loads an image and its transparency mask from a base64-encoded data URI for easy API connection. Exports imut image width and height. bases on comfyui-base64-to-image from glowcone"
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/Sayene/comfyui-base64-to-image"
+
+[tool.comfy]
+PublisherId = "sayene"
+DisplayName = "comfyui-base64-to-image-with-size"
+Icon = ""
