@@ -24,6 +24,7 @@ class LoadImageFromBase64Size:
     OUTPUT_TOOLTIPS = ("The loaded image tensor.", "The alpha mask tensor.", "The width of the image.", "The height of the image.")
     FUNCTION = "load_image"
     CATEGORY = "image"
+    class_type = "LoadImageFromBase64Size"
 
     def convert_color(self, image):
         if len(image.shape) > 2 and image.shape[2] >= 4:
